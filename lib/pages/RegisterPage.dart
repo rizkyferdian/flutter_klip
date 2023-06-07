@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tubes_klip/pages/LoginPage.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -18,6 +19,10 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              'Register',
+              style: Theme.of(context).textTheme.headline4,
+            ),
             TextFormField(
               controller: _nameController,
               decoration: InputDecoration(
@@ -45,6 +50,18 @@ class _RegisterPageState extends State<RegisterPage> {
               },
               child: Text('Register'),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
+              child: Text('Go to Login Page'),
+            )
           ],
         ),
       ),
