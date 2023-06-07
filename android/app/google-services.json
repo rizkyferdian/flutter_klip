@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "600222600522",
+    "project_id": "klip-56f41",
+    "storage_bucket": "klip-56f41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600222600522:android:9fe1a38d5b27d6046205b3",
+        "android_client_info": {
+          "package_name": "com.example.tubes_klip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600222600522-g7c5dtcplca6nd87r1e4767q7jdepf2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-9wbx-Km_9f_JH2EsFuZaMn84fWVuqjY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600222600522-g7c5dtcplca6nd87r1e4767q7jdepf2d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "600222600522-hgreq902psndqlbe8pmk7fe6cvr7cdc3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tubesKlip"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
