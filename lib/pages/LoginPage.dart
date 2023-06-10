@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tubes_klip/pages/HomePage.dart';
 import 'package:tubes_klip/pages/RegisterPage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -42,6 +43,10 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                 onPressed: () {
                   // TODO: Login the user
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
                 },
                 child: Text('Login'),
               ),
