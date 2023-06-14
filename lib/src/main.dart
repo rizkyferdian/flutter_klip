@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tubes_klip/pages/SplashPage.dart';
 import 'package:tubes_klip/src/firebase_options.dart';
 // import 'package:tubes_klip/pages/CheckoutPage.dart';
 // import 'package:tubes_klip/pages/HomePage.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // home: LoginPage(),
-      home: ProductDetails(),
+      debugShowCheckedModeBanner: false,
+      home: SplashPage(),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tubes_klip/pages/HomePage.dart';
+import 'package:tubes_klip/pages/RegisterPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,14 +19,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image.asset('assets/images/logo.png', width: 200, height: 100),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
@@ -40,8 +40,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
               obscureText: true,
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 40.0),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+              ),
               onPressed: () {
                 String email = _emailController.text;
                 String password = _passwordController.text;
@@ -77,6 +80,33 @@ class _LoginPageState extends State<LoginPage> {
                 });
               },
               child: Text('Login'),
+            ),
+            SizedBox(height: 100.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Belum mempunyai akun? ",
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterPage()),
+                    );
+                  },
+                  child: Text(
+                    "Register",
+                    style: TextStyle(
+                      color: Colors.red,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
