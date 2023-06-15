@@ -1,87 +1,50 @@
 import 'package:flutter/material.dart';
-import '../widgets/card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffFAFAFA),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 50, left: 24, right: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hollaa, Naufal 👍!',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
-              SizedBox(height: 15),
-              Container(
-                width: 400,
-                height: 170,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/banner.png"),
-                    fit: BoxFit.cover,
-                  ),
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: FirebaseFirestore.instance.collection('Product').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
+
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }
+
+          final List<QueryDocumentSnapshot<Map<String, dynamic>>>? documents =
+              snapshot.data?.docs;
+
+          if (documents == null || documents.isEmpty) {
+            return Text('No data available');
+          }
+
+          return ListView.builder(
+            itemCount: documents.length,
+            itemBuilder: (context, index) {
+              QueryDocumentSnapshot<Map<String, dynamic>> document =
+                  documents[index];
+              String nama = document.data()['Nama'] as String;
+              String imageUrl = document.data()['imageUrl'] as String;
+              int harga = document.data()['Harga'] as int;
+
+              return Card(
+                child: ListTile(
+                  leading: Image.network(imageUrl),
+                  title: Text(nama),
+                  subtitle: Text('Harga: $harga'),
                 ),
-              ),
-              SizedBox(height: 15),
-              Container(
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      offset: Offset(0, 2),
-                      blurRadius: 5,
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(width: 10),
-                    Icon(Icons.search),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                  ],
-                ),
-              ),
-              SizedBox(height: 24),
-              Text(
-                "Product tersedia",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: 16),
-              Container(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      CardProduct(),
-                      CardProduct(),
-                      CardProduct(),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+              );
+            },
+          );
+        },
       ),
     );
   }
