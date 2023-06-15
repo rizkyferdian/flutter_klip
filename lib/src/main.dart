@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tubes_klip/pages/SplashPage.dart';
 import 'package:tubes_klip/src/firebase_options.dart';
 // import 'package:tubes_klip/pages/CheckoutPage.dart';
-// import 'package:tubes_klip/pages/HomePage.dart';
+import 'package:tubes_klip/pages/HomePage.dart';
 import 'package:tubes_klip/pages/ProductDetailsPage.dart';
 // import 'package:tubes_klip/pages/LoginPage.dart';
 import 'package:firebase_core/firebase_core.dart';
