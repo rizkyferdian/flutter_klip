@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tubes_klip/pages/HomePage.dart';
 import 'package:tubes_klip/pages/CheckoutPage.dart';
 import 'package:tubes_klip/models/Product.dart';
+import 'package:tubes_klip/pages/Cart.dart';
+import 'package:tubes_klip/controllers/cart.dart';
 
 class ProductDetails extends StatefulWidget {
   final Product product;
@@ -13,20 +15,13 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      if (_counter > 0) {
-        _counter--;
-      }
-    });
+  void _addToCart() {
+    CartController.addToCart(widget.product);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Added to cart'),
+      ),
+    );
   }
 
   @override
@@ -158,57 +153,14 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
             child: Row(
               children: [
-                Container(
-                  width: 150,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade200,
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 55,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder(),
-                            backgroundColor: Colors.grey.shade900,
-                          ),
-                          onPressed: _decrementCounter,
-                          child: const Icon(Icons.remove),
-                        ),
-                      ),
-                      Text(
-                        '$_counter',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Container(
-                        height: 40,
-                        width: 55,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder(),
-                            backgroundColor: Colors.grey.shade900,
-                          ),
-                          onPressed: _incrementCounter,
-                          child: const Icon(Icons.add),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
+                      _addToCart();
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CheckoutPage()),
+                        MaterialPageRoute(builder: (context) => CartPage()),
                       );
                     },
                     style: ButtonStyle(
