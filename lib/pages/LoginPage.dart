@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 40.0),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
+                backgroundColor: Color.fromRGBO(255, 114, 111, 1),
               ),
               onPressed: () {
                 String email = _emailController.text;
@@ -98,10 +98,10 @@ class _LoginPageState extends State<LoginPage> {
                       MaterialPageRoute(builder: (context) => RegisterPage()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     "Register",
                     style: TextStyle(
-                      color: Colors.red,
+                      color: Color.fromRGBO(251, 102, 102, 1),
                       decoration: TextDecoration.underline,
                     ),
                   ),

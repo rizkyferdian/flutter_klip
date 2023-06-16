@@ -18,8 +18,9 @@ class _ProductDetailsState extends State<ProductDetails> {
   void _addToCart() {
     CartController.addToCart(widget.product);
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Added to cart'),
+        backgroundColor: Color.fromRGBO(166, 166, 166, 1),
       ),
     );
   }
@@ -38,19 +39,10 @@ class _ProductDetailsState extends State<ProductDetails> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
-                },
-              ),
-              const Expanded(
+              Expanded(
                 child: Text(
                   'Detail Product',
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.start,
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -165,7 +157,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     },
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.grey.shade900),
+                          MaterialStateProperty.all(Color.fromRGBO(251, 102, 102, 1)),
                       fixedSize: MaterialStateProperty.all(
                         const Size(50, 50),
                       ),

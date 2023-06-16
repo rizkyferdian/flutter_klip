@@ -11,7 +11,7 @@ class SuccessPage extends StatelessWidget {
         foregroundColor: Colors.black,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Center(child: Text('Success')),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -45,6 +45,9 @@ class SuccessPage extends StatelessWidget {
                 );
               },
               child: Text('Back to shop'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(255, 114, 111, 1),
+              ),
             ),
           ],
         ),
